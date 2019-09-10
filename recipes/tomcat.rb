@@ -49,7 +49,7 @@ template '/etc/systemd/system/tomcat.service' do
   action :create
 end
 
-execute '' do
+execute 'systemctl daemon-reload' do
   command 'systemctl daemon-reload'
   action :run
 end
