@@ -1,0 +1,30 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: chef-working-key
+  region: ap-southeast-1
+  availability_zone: a
+  subnet_id: subnet-71b25917
+  instance_type: t2.micro
+  image_id: ami-03b6f27628a4569c8
+  security_group_ids: ["sg-050a50556c6f3cbb2"]
+  retryable_tries: 120
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+
+transport:
+  ssh_key: /home/ubuntu/chef-working-key.pem
+
+platforms:
+  - name: ubuntu-18.04
+
+suites:
+  - name: default
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
