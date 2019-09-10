@@ -36,3 +36,24 @@ execute 'chown -RH tomcat: /opt/tomcat/latest' do
   command 'chown -RH tomcat: /opt/tomcat/latest'
   action :run
 end
+
+# execute sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+# -c: True if the file exists and is a character device.
+execute 'bin_directory_executables' do
+  command "sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'"
+  action :run
+end
+
+template '/etc/systemd/system/tomcat.service' do
+  source 'tomcat.service.erb'
+  action :create
+end
+
+execute '' do
+  command 'systemctl daemon-reload'
+  action :run
+end
+
+service 'tomcat' do
+  action [start, enable]
+end
