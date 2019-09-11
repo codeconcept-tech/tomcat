@@ -1,4 +1,5 @@
 ---
+# https://docs.chef.io/config_yml_kitchen.html
 driver:
   name: ec2
   aws_ssh_key_id: chef-working-key
