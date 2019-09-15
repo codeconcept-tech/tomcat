@@ -7,7 +7,7 @@ user 'tomcat' do
   action :create
 end
 
-Chef::Log.info("Loaded from aws [#{aws['id']}]")
+# Chef::Log.info("Loaded from aws [#{aws['id']}]")
 # execute wget http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.24/bin/apache-tomcat-9.0.24.tar.gz -P /tmp
 
 remote_file 'apache-tomcat-9.0.24.tar.gz' do
